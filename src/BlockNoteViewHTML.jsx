@@ -27,7 +27,9 @@ export default function BlockNoteViewHTML() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        maxWidth: "1100px",
+        maxWidth: "60%",
+        marginLeft: "auto",
+        marginRight: "auto",
       }}
     >
       <BlockNoteView

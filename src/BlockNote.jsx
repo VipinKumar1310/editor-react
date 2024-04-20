@@ -1,4 +1,4 @@
-import { filterSuggestionItems } from "@blocknote/core";
+import { defaultProps, filterSuggestionItems } from "@blocknote/core";
 import "@blocknote/core/fonts/inter.css";
 import {
   BlockNoteView,
@@ -30,23 +30,28 @@ export default function Editor(props) {
       const currentBlock = editor.getTextCursorPosition().block;
 
       // New block we want to insert.
-      const helloWorldBlock = {
+      const headingFour = {
         type: "heading",
         props: {
-          textColor: "default",
-          backgroundColor: "default",
-          level: "4",
-          textAlignments: "left",
+          textColor: defaultProps.textColor,
+          backgroundColor: defaultProps.backgroundColor,
+          level: 4,
+          textAlignments: defaultProps.textAlignment,
         },
-        content: [{ type: "text", text: "heading", styles: { bold: true } }],
+        content: [
+          // {
+          //   type: "text",
+          //   styles: { bold: true, fontSize: "50px" },
+          // },
+        ],
       };
 
       // Inserting the new block after the current one.
-      editor.insertBlocks([helloWorldBlock], currentBlock, "after");
+      editor.insertBlocks([headingFour], currentBlock, "before");
     },
     aliases: ["heading", "h4"],
     group: "Headings",
-    // icon: <HiOutlineGlobeAlt size={18} />,
+    // icon: <Heading4 size={18} />,
     subtext: "Used for sub sub sections.",
   });
 
@@ -59,7 +64,7 @@ export default function Editor(props) {
 
   // Renders the editor instance using a React component.
   return (
-    <div style={{ maxWidth: "1100px" }}>
+    <div style={{ maxWidth: "60%", marginLeft: "auto", marginRight: "auto" }}>
       <BlockNoteView
         editor={editor}
         slashMenu={false}

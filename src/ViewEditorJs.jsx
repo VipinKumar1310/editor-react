@@ -69,7 +69,7 @@ const EditorComponent = () => {
     // eslint-disable-next-line no-unused-vars
     let Editor = new EditorJS({
       holderId: "textEditor",
-      data: JSON.parse(htmlContent),
+      data: htmlContent ? JSON.parse(htmlContent) : undefined,
       tools: tools,
       placeholder: "Let's write an awesome Blog",
       onChange: async () => {

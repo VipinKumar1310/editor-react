@@ -68,11 +68,80 @@ const uploadImageByUrl = (e) => {
   });
 };
 
+const defaultValue = {
+  time: 1713607118211,
+  blocks: [
+    {
+      id: "l98dyx3yjb",
+      type: "header",
+      data: {
+        text: "Key features",
+        level: 3,
+      },
+    },
+    {
+      id: "1yKeXKxN7-",
+      type: "header",
+      data: {
+        text: "What does it mean «block-styled editor»",
+        level: 3,
+      },
+    },
+    {
+      id: "TcUNySG15P",
+      type: "paragraph",
+      data: {
+        text: "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc. Each of them is an independent <sup daitable element (or more complex structure) provided by Plugin and united by Editor's Core.",
+      },
+      tunes: {
+        footnotes: [
+          "It works more stable then in other WYSIWYG editors. Same time it has smooth and well-known arrow navigation behavior like classic editors.",
+        ],
+      },
+    },
+    {
+      id: "M3UXyblhAo",
+      type: "header",
+      data: {
+        text: "What does it mean clean data output?",
+        level: 3,
+      },
+    },
+    {
+      id: "KOcIofZ3Z1",
+      type: "paragraph",
+      data: {
+        text: "There are dozens of ready-to-use Blocks and a simple API <g any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA buttons, and even games.",
+      },
+      tunes: {
+        footnotes: [
+          "Just take a look at our Creating Block Tool guide. You'll be surprised.",
+        ],
+      },
+    },
+    {
+      id: "ksCokKAhQw",
+      type: "paragraph",
+      data: {
+        text: "Classic WYSIWYG editors produce raw HTML-markup with both content data and content appearance. On the contrary, or.js outputs JSON object</mark> with data of each Block.",
+      },
+    },
+  ],
+};
+
 const tools = {
-  embed: Embed,
+  embed: {
+    class: Embed,
+    config: {
+      services: {
+        youtube: true,
+        coub: true,
+      },
+    },
+  },
   list: {
     class: List,
-    inlineToolbar: true,
+    inlineToolbar: ["bold", "anchorTag"],
   },
   header: {
     class: Header,
@@ -91,7 +160,7 @@ const tools = {
       },
     },
   },
-  link: Link,
+  // link: Link,
   marker: Marker,
   quote: {
     class: Quote,
@@ -109,7 +178,9 @@ const EditorComponent = () => {
     // eslint-disable-next-line no-unused-vars
     let Editor = new EditorJS({
       holderId: "textEditor",
-      data: JSON.parse(htmlContent),
+      data: htmlContent
+        ? JSON.parse(htmlContent ? htmlContent : defaultValue)
+        : defaultValue,
       tools: tools,
       placeholder: "Let's write an awesome Blog",
       autofocus: true,
